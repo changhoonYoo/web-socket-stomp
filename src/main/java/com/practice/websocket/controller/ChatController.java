@@ -1,5 +1,6 @@
-package com.practice.websocket;
+package com.practice.websocket.controller;
 
+import com.practice.websocket.dto.ChatMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -20,7 +21,6 @@ public class ChatController {
     @SendTo("/user/{roomId}")
     public void messageHandler(@DestinationVariable String roomId, @Payload ChatMessage message) {
         log.info(message.toString());
-        message.setContent("내용바꿔버리기");
         operations.convertAndSend("/sub/user/" + roomId, message);
     }
 

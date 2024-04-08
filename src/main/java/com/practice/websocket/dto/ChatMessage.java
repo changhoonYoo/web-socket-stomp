@@ -1,4 +1,4 @@
-package com.practice.websocket;
+package com.practice.websocket.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

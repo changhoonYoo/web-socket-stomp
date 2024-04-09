@@ -7,28 +7,27 @@ import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor
 @Slf4j
 public class ChatController {
 
-    private final SimpMessageSendingOperations operations;
+    private final SimpMessagingTemplate messagingTemplate;
 
-    @MessageMapping("/{roomId}")
-    @SendTo("/user/{roomId}")
-    public void messageHandler(@DestinationVariable String roomId, @Payload ChatMessage message) {
-        log.info(message.toString());
-        operations.convertAndSend("/sub/user/" + roomId, message);
+
+    @GetMapping("/index")
+    public String index() {
+        return "index";
     }
 
-    /*
-    setApplicationDestinationPrefixes는 @MessageMapping이 붙은 메서드를 호출한다.
-
-    메세지를 발행하게 되면, /pub/channel 로 라우팅되고,
-
-    /sub/channel/channelId를 구독하는 클라이언트로 메세지 객체가 전달된다.
-     */
+    @MessageMapping("/{roomId}")
+    @SendTo("/room/{roomId}")
+    public void messageHandler(@DestinationVariable String roomId, @Payload ChatMessage message) {
+        log.info(message.toString());
+        messagingTemplate.convertAndSend("/sub/room/" + roomId, message);
+    }
 }

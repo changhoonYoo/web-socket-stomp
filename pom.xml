@@ -51,13 +51,17 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 			<version>3.2.4</version>
 		</dependency>
-
-
 		<!-- 제이쿼리 -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
 			<version>3.6.0</version>
+		</dependency>
+		<!-- 부트스트랩 의존성 -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>5.0.0-beta2</version>
 		</dependency>
 	</dependencies>
 

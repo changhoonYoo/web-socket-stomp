@@ -24,7 +24,7 @@ public class WebSocketInterceptor implements ChannelInterceptor {
             case CONNECT, DISCONNECT -> {
                 log.info("Now {}", command);
             }
-            case SUBSCRIBE, UNSUBSCRIBE -> {
+            case SUBSCRIBE, UNSUBSCRIBE, SEND -> {
                 log.info("{} Successful", command);
                 log.info("Destination is {}", headerAccessor.getDestination());
             }

@@ -1,7 +1,6 @@
 package com.practice.websocket.config;
 
 import com.practice.websocket.interceptor.WebSocketInterceptor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -17,8 +16,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // Client 에서 websocket 연결할 때 사용할 API 경로를 설정해주는 메서드.
         registry.addEndpoint("/ws")
-                .setAllowedOriginPatterns("*");
-//                .withSockJS();
+                .setAllowedOriginPatterns("*")
+                .withSockJS();
     }
 
 

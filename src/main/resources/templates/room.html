@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>${room.name}</title>
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -14,7 +15,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <script th:inline="javascript">
-    /*<![CDATA[*/
     $(document).ready(function(){
 
       var roomName = /*[[${room.name}]]*/;
@@ -55,7 +55,7 @@
         });
 
         //3. send(path, header, message)로 메세지를 보낼 수 있음
-        stomp.send('/pub/enter', {}, JSON.stringify({roomId: roomId, sender: username}))
+        stomp.send('/pub/enter', {}, JSON.stringify({roomId: roomId, sender: username}));
       });
 
       $("#button-send").on("click", function(e){
@@ -65,7 +65,7 @@
         stomp.send('/pub/chat', {}, JSON.stringify({roomId: roomId, content: msg.value, sender: username}));
         msg.value = '';
       });
-    /*]]>*/
+    });
 </script>
 <body>
 <div class="container">
